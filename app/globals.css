@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #030507;
+  --foreground: #f4fbff;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-strong: rgba(255, 255, 255, 0.14);
+  --cyan-glow: rgba(71, 221, 255, 0.42);
+  --amber-glow: rgba(255, 149, 73, 0.42);
+  --rose-glow: rgba(255, 68, 118, 0.38);
 }
 
 @theme inline {
@@ -12,15 +17,115 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-rendering: geometricPrecision;
+}
+
+::selection {
+  background: rgba(71, 221, 255, 0.3);
+  color: #ffffff;
+}
+
+* {
+  scrollbar-color: rgba(71, 221, 255, 0.28) rgba(255, 255, 255, 0.04);
+}
+
+.sense-vignette {
+  background:
+    radial-gradient(circle at 52% 42%, rgba(71, 221, 255, 0.16), transparent 26rem),
+    radial-gradient(circle at 74% 28%, rgba(255, 149, 73, 0.13), transparent 22rem),
+    radial-gradient(circle at 23% 70%, rgba(123, 92, 255, 0.16), transparent 25rem),
+    linear-gradient(145deg, #030507 0%, #071015 43%, #030406 100%);
+}
+
+.glass-surface {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.52),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(22px);
+}
+
+.hud-grid {
+  background-image:
+    linear-gradient(rgba(71, 221, 255, 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(71, 221, 255, 0.1) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at center, black, transparent 74%);
+}
+
+.scan-lines {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 10px,
+    rgba(151, 235, 255, 0.06) 11px,
+    transparent 12px
+  );
+  background-size: 100% 12px;
+}
+
+.thermal-aura {
+  background:
+    radial-gradient(circle at 34% 44%, rgba(71, 221, 255, 0.55), transparent 15%),
+    radial-gradient(circle at 58% 38%, rgba(42, 255, 159, 0.38), transparent 17%),
+    radial-gradient(circle at 64% 61%, rgba(255, 207, 82, 0.52), transparent 14%),
+    radial-gradient(circle at 44% 68%, rgba(255, 76, 128, 0.42), transparent 13%),
+    linear-gradient(135deg, rgba(13, 24, 31, 0.48), rgba(3, 5, 7, 0.06));
+  filter: saturate(1.35);
+}
+
+.scan-beam {
+  animation: scan-beam 4.8s ease-in-out infinite;
+}
+
+.soft-pulse {
+  animation: soft-pulse 5.6s ease-in-out infinite;
+}
+
+@keyframes scan-beam {
+  0%,
+  100% {
+    transform: translateY(-18%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  55% {
+    opacity: 1;
+  }
+  85% {
+    transform: translateY(118%);
+    opacity: 0;
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 0.62;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.025);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
