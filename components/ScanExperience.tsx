@@ -8,8 +8,8 @@ import { HudLabel } from "@/components/HudLabel";
 import {
   getWallScanImage,
   saveWallScanResult,
-  type WallScanResult,
 } from "@/lib/scanStorage";
+import type { WallScanResult } from "@/types/scan";
 
 const statusMessages = [
   "Reading surface structure",
@@ -243,7 +243,7 @@ export function ScanExperience() {
                 Vision layer
               </span>
               <span className="rounded-full border border-white/14 bg-black/24 px-3 py-1 text-[0.62rem] uppercase tracking-[0.22em] text-white/52 backdrop-blur-xl">
-                Mock scan
+                Surface map
               </span>
             </div>
           </div>

@@ -1,28 +1,7 @@
+import type { WallScanResult } from "@/types/scan";
+
 const WALL_SCAN_IMAGE_KEY = "sixth-sense-vision.wall-scan-image";
 const WALL_SCAN_RESULT_KEY = "sixth-sense-vision.wall-scan-result";
-
-export type WallScanZoneType =
-  | "moisture_suspicion"
-  | "crack_risk"
-  | "surface_wear"
-  | "material_changes";
-
-export type WallScanZone = {
-  id: string;
-  type: WallScanZoneType;
-  label: string;
-  confidence: number;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-};
-
-export type WallScanResult = {
-  mode: "wall_scan";
-  createdAt: string;
-  zones: WallScanZone[];
-};
 
 function canUseSessionStorage() {
   return typeof window !== "undefined" && "sessionStorage" in window;
